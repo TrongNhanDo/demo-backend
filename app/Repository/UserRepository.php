@@ -45,7 +45,7 @@ class UserRepository
         $rs = $this->userModel->create($request->all());
         if ($rs) {
             return response([
-                'errors' => [[]],
+                'errors' => [],
                 'bizResult' => '0'
             ]);
         }
@@ -92,7 +92,7 @@ class UserRepository
         ]);
         if ($result) {
             return response([
-                'errors' => [[]],
+                'errors' => [],
                 'bizResult' => '0'
             ]);
         }
@@ -114,7 +114,7 @@ class UserRepository
         $rs = $this->userModel->where('id', $request->id)->delete();
         if ($rs) {
             return response([
-                'errors' => [[]],
+                'errors' => [],
                 'bizResult' => '0'
             ]);
         }
