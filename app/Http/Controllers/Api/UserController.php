@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Service\UserService;
+use App\Services\UserService;
 use Exception;
 use Illuminate\Http\Request;
 use App\Models\User;
