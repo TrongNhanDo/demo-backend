@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Events\PusherEvent;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -44,6 +45,7 @@ class UserRepository
 
         $rs = $this->userModel->create($request->all());
         if ($rs) {
+            $this->syncData();
             return response([
                 'errors' => [],
                 'bizResult' => '0'
@@ -91,6 +93,7 @@ class UserRepository
             'address' => $request->address,
         ]);
         if ($result) {
+            $this->syncData();
             return response([
                 'errors' => [],
                 'bizResult' => '0'
@@ -113,6 +116,7 @@ class UserRepository
     {
         $rs = $this->userModel->where('id', $request->id)->delete();
         if ($rs) {
+            $this->syncData();
             return response([
                 'errors' => [],
                 'bizResult' => '0'
@@ -125,5 +129,11 @@ class UserRepository
             ]],
             'bizResult' => '8'
         ]);
+    }
+
+    public function syncData()
+    {
+        $users = $this->userModel->get();
+        event(new PusherEvent($users));
     }
 }

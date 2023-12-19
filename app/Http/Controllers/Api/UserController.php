@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Services\UserService;
 use Exception;
 use Illuminate\Http\Request;
-use App\Models\User;
 
 class UserController extends Controller
 {
@@ -14,6 +13,7 @@ class UserController extends Controller
         private UserService $userService
     ) {
     }
+
     /**
      * Display a listing of the resource.
      *
